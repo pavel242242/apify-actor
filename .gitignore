@@ -10,6 +10,8 @@ yarn.lock
 apify_storage/
 storage/
 *.key
+.actor/INPUT.json
+*/.actor/INPUT.json
 
 # Environment
 .env
