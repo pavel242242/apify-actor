@@ -1,0 +1,38 @@
+{
+  "actorSpecification": 1,
+  "name": "stockx-scraper",
+  "title": "StockX Product Scraper",
+  "description": "Extract product data from StockX including prices, SKUs, and images. Optimized with hidden JSON extraction for speed.",
+  "version": "1.0",
+  "buildTag": "latest",
+  "meta": {
+    "templateId": "js-crawlee-playwright"
+  },
+  "input": "./INPUT_SCHEMA.json",
+  "dockerfile": "./Dockerfile",
+  "readme": "./README.md",
+  "storages": {
+    "dataset": {
+      "actorSpecification": 1,
+      "title": "StockX Products",
+      "views": {
+        "overview": {
+          "title": "Product Overview",
+          "transformation": {
+            "fields": [
+              "title",
+              "brand",
+              "price",
+              "sku",
+              "url"
+            ]
+          },
+          "display": {
+            "component": "table",
+            "properties": {}
+          }
+        }
+      }
+    }
+  }
+}

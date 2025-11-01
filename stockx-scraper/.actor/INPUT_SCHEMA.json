@@ -1,0 +1,53 @@
+{
+  "title": "StockX Product Scraper Input",
+  "description": "Configure scraping parameters. Start with 10-100 products for testing.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "🔗 Product URLs or Search Pages",
+      "type": "array",
+      "description": "Add product URLs, category pages, or search results. Supports batch scraping.",
+      "editor": "requestListSources",
+      "prefill": [
+        { "url": "https://stockx.com/search?s=jordan" }
+      ],
+      "sectionCaption": "📍 Main Configuration"
+    },
+    "maxResults": {
+      "title": "Maximum products",
+      "type": "integer",
+      "description": "Stop after scraping this many products. Start with 100 for testing. ⚠️ Higher values increase time and cost.",
+      "default": 100,
+      "minimum": 1,
+      "maximum": 50000,
+      "unit": "products"
+    },
+    "extractPricing": {
+      "title": "Extract real-time pricing data",
+      "type": "boolean",
+      "description": "Enable to scrape bid/ask prices and last sale. ⚠️ Requires JavaScript rendering, increases runtime by 3-5x.",
+      "default": false,
+      "sectionCaption": "⚙️ Data Options"
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Residential proxies strongly recommended for avoiding blocks. Datacenter proxies have 60%+ failure rate.",
+      "editor": "proxy",
+      "default": {
+        "useApifyProxy": true,
+        "apifyProxyGroups": ["RESIDENTIAL"]
+      },
+      "sectionCaption": "🌐 Proxy & Performance"
+    },
+    "debugMode": {
+      "title": "Debug mode",
+      "type": "boolean",
+      "description": "Enable verbose logging. Only use for troubleshooting.",
+      "default": false,
+      "sectionCaption": "🔧 Developer Options"
+    }
+  },
+  "required": ["startUrls"]
+}

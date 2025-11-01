@@ -1,0 +1,26 @@
+{
+  "name": "apify-ecommerce-scrapers",
+  "version": "1.0.0",
+  "description": "Monorepo for StockX, Grailed, and Poshmark Apify actors",
+  "private": true,
+  "workspaces": [
+    "stockx-scraper",
+    "grailed-scraper",
+    "poshmark-scraper"
+  ],
+  "scripts": {
+    "stockx": "cd stockx-scraper && apify run",
+    "grailed": "cd grailed-scraper && apify run",
+    "poshmark": "cd poshmark-scraper && apify run"
+  },
+  "keywords": [
+    "apify",
+    "scraper",
+    "ecommerce",
+    "stockx",
+    "grailed",
+    "poshmark"
+  ],
+  "author": "",
+  "license": "Apache-2.0"
+}

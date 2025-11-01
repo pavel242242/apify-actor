@@ -1,133 +1,129 @@
-# Apify Actor
+# E-commerce Scrapers Monorepo
 
-This is a template for an Apify Actor built with Python. It provides a basic structure following Apify's best practices and latest guidelines.
+A collection of production-ready Apify actors for scraping major e-commerce/resale platforms.
 
-## Features
+## Actors
 
-- Built with the Apify SDK for Python
-- Follows the standard Actor directory structure
-- Includes input schema for easy configuration
-- Ready to deploy on the Apify platform
+### 🟢 StockX Scraper
+High-performance scraper for StockX product data with optimized hidden JSON extraction.
 
-## Structure
+**Status:** MVP Complete
+**Location:** `./stockx-scraper/`
+**Features:**
+- Hidden JSON extraction (fast)
+- Optional real-time pricing with Playwright
+- Cloudflare evasion
+- Pagination handling
+
+### 🔵 Grailed Scraper (Coming Soon)
+Scraper for Grailed streetwear marketplace with infinite scroll support.
+
+**Status:** Planned
+**Location:** `./grailed-scraper/`
+
+### 🟣 Poshmark Scraper (Coming Soon)
+Advanced scraper for Poshmark with maximum stealth capabilities.
+
+**Status:** Planned
+**Location:** `./poshmark-scraper/`
+
+## Project Structure
 
 ```
-.
-├── .actor/
-│   ├── actor.json          # Actor configuration
-│   ├── input_schema.json   # Input schema definition
-│   └── Dockerfile          # Docker configuration
-├── src/
-│   ├── __main__.py         # Actor entrypoint
-│   └── main.py             # Main Actor logic
-├── requirements.txt        # Python dependencies
-├── .gitignore             # Git ignore rules
-└── README.md              # This file
+/
+├── package.json              # Root workspace config
+├── stockx-scraper/           # StockX actor
+│   ├── .actor/               # Actor configuration
+│   │   ├── actor.json
+│   │   ├── INPUT_SCHEMA.json
+│   │   └── Dockerfile
+│   ├── src/
+│   │   └── main.js
+│   ├── package.json
+│   └── README.md
+├── grailed-scraper/          # Grailed actor (future)
+└── poshmark-scraper/         # Poshmark actor (future)
 ```
 
-## Input
-
-The Actor accepts the following input parameters:
-
-- **startUrls** (required): Array of URLs to process
-- **maxCrawlDepth**: Maximum depth of crawling (default: 0)
-- **maxResults**: Maximum number of results to return (default: 100)
-- **proxyConfiguration**: Proxy settings for the Actor
-
-## Output
-
-The Actor stores results in the default dataset with the following structure:
-
-```json
-{
-  "url": "https://example.com",
-  "title": "Page title",
-  "processed_at": "2025-11-01T12:00:00.000Z"
-}
-```
-
-## Local Development
+## Getting Started
 
 ### Prerequisites
+- Node.js 18+
+- Apify CLI: `npm install -g apify-cli`
+- Apify account with residential proxy access
 
-- Python 3.12 or higher
-- pip
+### Installation
 
-### Setup
+```bash
+# Clone repository
+git clone <repo-url>
+cd apify-actor
 
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+# Install dependencies
+npm install
 
-2. Run the Actor locally:
-   ```bash
-   apify run
-   ```
+# Login to Apify
+apify login
+```
 
-   Or run directly with Python:
-   ```bash
-   python -m src
-   ```
+### Running Locally
 
-### Testing with Input
+```bash
+# Run StockX scraper
+npm run stockx
 
-Create a file `.actor/input.json` with your test input:
+# Or use Apify CLI directly
+cd stockx-scraper
+apify run
+```
+
+### Testing with Custom Input
+
+Create `.actor/INPUT.json` in the actor directory:
 
 ```json
 {
   "startUrls": [
-    { "url": "https://apify.com" }
+    { "url": "https://stockx.com/search?s=jordan" }
   ],
   "maxResults": 10
 }
 ```
 
-Then run the Actor with:
+## Development
+
+### Adding a New Actor
+
+1. Create directory structure
+2. Add to workspace in root `package.json`
+3. Configure `.actor/actor.json`
+4. Implement scraping logic in `src/main.js`
+5. Test locally with `apify run`
+
+### Deployment
+
+Each actor can be deployed independently:
+
 ```bash
-apify run
+cd stockx-scraper
+apify push
 ```
 
-## Deployment
+## Architecture
 
-### Using Apify CLI
-
-1. Login to Apify:
-   ```bash
-   apify login
-   ```
-
-2. Push to Apify platform:
-   ```bash
-   apify push
-   ```
-
-### Using Git Integration
-
-1. Connect your GitHub repository in the Apify Console
-2. Push your changes to the repository
-3. The Actor will be automatically built and deployed
-
-## Customization
-
-### Modifying the Actor Logic
-
-Edit `src/main.py` to implement your custom logic. The main function is called when the Actor runs and has access to the Apify SDK context.
-
-### Adding Dependencies
-
-Add any Python packages you need to `requirements.txt`.
-
-### Updating Input Schema
-
-Modify `.actor/input_schema.json` to change the input parameters your Actor accepts.
+All actors follow the 2024-2025 Apify best practices:
+- **Crawlee v3.15+** for scraping logic
+- **Apify SDK v3.5+** for platform features
+- **Playwright** for JavaScript-rendered sites
+- **Residential proxies** for anti-bot evasion
+- **Session management** for behavioral consistency
 
 ## Resources
 
-- [Apify SDK for Python Documentation](https://docs.apify.com/sdk/python)
-- [Apify Actor Documentation](https://docs.apify.com/platform/actors)
-- [Input Schema Specification](https://docs.apify.com/platform/actors/development/actor-definition/input-schema)
+- [Apify Documentation](https://docs.apify.com)
+- [Crawlee Documentation](https://crawlee.dev)
+- [Implementation Guide](./docs/IMPLEMENTATION_GUIDE.md) (see spec)
 
 ## License
 
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+Apache-2.0

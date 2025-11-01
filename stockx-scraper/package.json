@@ -1,0 +1,26 @@
+{
+  "name": "stockx-scraper",
+  "version": "1.0.0",
+  "description": "Apify actor for scraping StockX product data",
+  "type": "module",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "apify",
+    "scraper",
+    "stockx",
+    "ecommerce",
+    "sneakers"
+  ],
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "apify": "^3.5.1",
+    "crawlee": "^3.15.1",
+    "playwright": "^1.40.0",
+    "cheerio": "^1.0.0-rc.12"
+  }
+}
