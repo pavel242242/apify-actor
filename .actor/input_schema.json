@@ -1,0 +1,42 @@
+{
+    "title": "Actor Input Schema",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "startUrls": {
+            "title": "Start URLs",
+            "type": "array",
+            "description": "List of URLs to process",
+            "editor": "requestListSources",
+            "prefill": [
+                {
+                    "url": "https://apify.com"
+                }
+            ]
+        },
+        "maxCrawlDepth": {
+            "title": "Max crawl depth",
+            "type": "integer",
+            "description": "Maximum depth of crawling (0 means only start URLs)",
+            "default": 0,
+            "minimum": 0
+        },
+        "maxResults": {
+            "title": "Max results",
+            "type": "integer",
+            "description": "Maximum number of results to return",
+            "default": 100,
+            "minimum": 1
+        },
+        "proxyConfiguration": {
+            "title": "Proxy configuration",
+            "type": "object",
+            "description": "Proxy settings for the Actor",
+            "editor": "proxy",
+            "default": {
+                "useApifyProxy": false
+            }
+        }
+    },
+    "required": ["startUrls"]
+}
