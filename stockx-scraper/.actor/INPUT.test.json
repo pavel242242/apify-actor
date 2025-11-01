@@ -1,0 +1,12 @@
+{
+  "startUrls": [
+    { "url": "https://stockx.com/search?s=jordan" }
+  ],
+  "maxResults": 10,
+  "extractPricing": false,
+  "debugMode": false,
+  "proxyConfiguration": {
+    "useApifyProxy": true,
+    "apifyProxyGroups": ["RESIDENTIAL"]
+  }
+}
