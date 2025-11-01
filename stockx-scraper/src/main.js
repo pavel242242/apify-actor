@@ -1,5 +1,5 @@
 import { Actor } from 'apify';
-import { PlaywrightCrawler } from 'crawlee';
+import { PlaywrightCrawler, log } from 'crawlee';
 import playwright from 'playwright';
 import * as cheerio from 'cheerio';
 
@@ -22,10 +22,11 @@ if (!startUrls || startUrls.length === 0) {
 }
 
 if (debugMode) {
-    Actor.log.setLevel(Actor.log.LEVELS.DEBUG);
+    // Set debug level via environment variable before Actor.init()
+    // For runtime, use: process.env.APIFY_LOG_LEVEL = 'DEBUG'
 }
 
-Actor.log.info('StockX Scraper starting...', {
+log.info('StockX Scraper starting...', {
     startUrls: startUrls.length,
     maxResults,
     extractPricing
@@ -232,7 +233,7 @@ const crawler = new PlaywrightCrawler({
 await crawler.run(startUrls);
 
 // Log final stats
-Actor.log.info('StockX scraping completed', {
+log.info('StockX scraping completed', {
     totalScraped: scrapedCount,
     maxResults
 });
